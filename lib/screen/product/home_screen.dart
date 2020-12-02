@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:sneak_shoes_app/screen/product/component/body.dart';
+import 'package:sneak_shoes_app/screen/product/component/cart.dart';
 import 'package:sneak_shoes_app/screen/product/component/drawer.dart';
 import 'package:sneak_shoes_app/screen/product/component/filters.dart';
 
@@ -96,7 +97,14 @@ class _HomeScreenState extends State<HomeScreen>
           backgroundColor: blackColor,
           elevation: 0,
           mini: true,
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Cart(),
+              ),
+            );
+          },
           child: Center(
             child: Text(
               "3",
