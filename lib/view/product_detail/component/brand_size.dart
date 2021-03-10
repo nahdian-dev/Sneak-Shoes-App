@@ -9,7 +9,15 @@ class BrandSize extends StatefulWidget {
 
 class _BrandSizeState extends State<BrandSize> {
   int _selectedIndex = 0;
-  List sizeItem = ['40', '41', '42', '45', '46', '47'];
+  
+  List sizeItem = [
+    '40',
+    '41',
+    '42',
+    '45',
+    '46',
+    '47',
+  ];
 
   @override
   Widget build(BuildContext context) {

@@ -4,6 +4,7 @@ const primaryColor = Color(0xFFFFFFFF);
 const secondaryColor = Color(0xFFF6F6F6);
 const blackColor = Color(0xFF000000);
 const brownColor = Color(0xFFFFCBAD);
+const whiteColor = Color(0xFFFFFFFF);
 
 getPrimaryFont({double fontSize, FontStyle fontStyle, Color color}) {
   return TextStyle(

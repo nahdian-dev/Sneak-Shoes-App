@@ -1,33 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:sneak_shoes_app/immutable.dart';
-import 'package:sneak_shoes_app/models/products.dart';
-import 'package:sneak_shoes_app/screen/detail/detail_screen.dart';
+import 'package:get/get.dart';
+import 'package:sneak_shoes_app/controller/product_controller.dart';
+import 'package:sneak_shoes_app/view/home/component/custom_bottom_sheet.dart';
+import 'package:sneak_shoes_app/view/widgets/custom_animated_icon.dart';
 
-import 'package:sneak_shoes_app/screen/product/component/drawer.dart';
-import 'package:sneak_shoes_app/screen/product/component/filters.dart';
+import '../../../immutable.dart';
+import 'drawer_menu.dart';
 
-class Cart extends StatefulWidget {
-  @override
-  _CartState createState() => _CartState();
-}
-
-class _CartState extends State<Cart> with SingleTickerProviderStateMixin {
-  bool isOpened = false;
-  AnimationController _animationController;
-  Animation<double> _animateIcon;
-  GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey();
-
-  @override
-  initState() {
-    _animationController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 500))
-          ..addListener(() {
-            setState(() {});
-          });
-    _animateIcon =
-        Tween<double>(begin: 0.0, end: 1.0).animate(_animationController);
-    super.initState();
-  }
+class Cart extends StatelessWidget {
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -87,24 +68,8 @@ class _CartState extends State<Cart> with SingleTickerProviderStateMixin {
   //appBar method
   AppBar buildAppBar(BuildContext context) {
     return AppBar(
-      leading: IconButton(
-        highlightColor: Colors.transparent,
-        splashColor: Colors.transparent,
-        onPressed: () {
-          if (!isOpened) {
-            _animationController.forward();
-            _scaffoldKey.currentState.openDrawer();
-          } else {
-            _scaffoldKey.currentState.openEndDrawer();
-            _animationController.reverse();
-          }
-          isOpened = !isOpened;
-        },
-        icon: AnimatedIcon(
-          icon: AnimatedIcons.menu_close,
-          color: blackColor,
-          progress: _animateIcon,
-        ),
+      leading: CustomAnimatedIcon(
+        globalKey: _scaffoldKey,
       ),
       actions: <Widget>[
         IconButton(
@@ -127,7 +92,7 @@ class _CartState extends State<Cart> with SingleTickerProviderStateMixin {
               backgroundColor: primaryColor,
               context: context,
               builder: (BuildContext context) {
-                return Filters();
+                return CustomBottomSheet();
               },
             );
           },
@@ -155,6 +120,8 @@ class _CartState extends State<Cart> with SingleTickerProviderStateMixin {
 }
 
 class CartContent extends StatelessWidget {
+  final ProductController productController = Get.put(ProductController());
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -169,22 +136,12 @@ class CartContent extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(
-          height: 350,
+        Expanded(
           child: ListView.builder(
             physics: BouncingScrollPhysics(),
             itemCount: 4,
             itemBuilder: (context, index) => InkWell(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => DetailScreen(
-                      dataContent: dataContent[index],
-                    ),
-                  ),
-                );
-              },
+              onTap: () {},
               child: Container(
                 margin: EdgeInsets.all(20),
                 child: Row(
@@ -197,7 +154,9 @@ class CartContent extends StatelessWidget {
                         color: Colors.grey.withOpacity(0.2),
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      child: Image.asset(dataContent[index].img),
+                      child: Image.asset(
+                        productController.listProduct[index].img,
+                      ),
                     ),
                     SizedBox(
                       width: 20,
@@ -207,14 +166,14 @@ class CartContent extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            dataContent[index].title,
+                            productController.listProduct[index].title,
                             style: getPrimaryFont(),
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "\$ ${dataContent[index].price.toStringAsFixed(2)}",
+                                "\$ ${productController.listProduct[index].price.toStringAsFixed(2)}",
                                 style: getSecondaryFont(),
                               ),
                               Text(
