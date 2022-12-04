@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sneak_shoes_app/presentation/resources/colors_manager.dart';
+import 'package:sneak_shoes_app/presentation/routes/routes_manager.dart';
 
 class HomeMenu extends StatelessWidget {
   @override
@@ -53,7 +54,10 @@ class HomeMenu extends StatelessWidget {
                   delegate: SliverChildBuilderDelegate(
                     (BuildContext context, int index) {
                       return GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.of(context)
+                              .pushNamed(Routes.productDetailRoute);
+                        },
                         child: Container(
                           margin: EdgeInsets.all(5),
                           padding: EdgeInsets.all(3),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sneak_shoes_app/presentation/routes/routes_generator.dart';
 import '../presentation/resources/themes_manager.dart';
 import '../presentation/views/home/home.dart';
 
@@ -14,6 +15,7 @@ class _MyAppState extends State<MyApp> {
       title: 'Sneak Shoes App',
       debugShowCheckedModeBanner: false,
       theme: getApplicationTheme(),
+      onGenerateRoute: RouteGenerator.getRoute,
       home: Home(),
     );
   }
