@@ -6,6 +6,7 @@ import 'package:sneak_shoes_app/presentation/resources/colors_manager.dart';
 import 'package:sneak_shoes_app/presentation/widgets/custom_animated_icon.dart';
 
 import 'component/drawer_menu.dart';
+import 'component/filter_content.dart';
 
 class Home extends StatelessWidget {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
@@ -31,20 +32,24 @@ class Home extends StatelessWidget {
             icon: Icon(Icons.tune),
             color: ColorManager.dark,
             onPressed: () {
-              // Get.bottomSheet(
-              //   Container(
-              //     height: MediaQuery.of(context).size.height / 1.2,
-              //     decoration: BoxDecoration(
-              //       color: ColorManager.white,
-              //       borderRadius: BorderRadius.only(
-              //         topLeft: Radius.circular(50),
-              //         topRight: Radius.circular(50),
-              //       ),
-              //     ),
-              //     child: CustomBottomSheet(),
-              //   ),
-              //   isScrollControlled: true,
-              // );
+              showModalBottomSheet(
+                context: context,
+                isScrollControlled: true,
+                backgroundColor: Colors.transparent,
+                builder: ((context) {
+                  return Container(
+                    height: MediaQuery.of(context).size.height / 1.2,
+                    decoration: BoxDecoration(
+                      color: ColorManager.primary,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(50),
+                        topRight: Radius.circular(50),
+                      ),
+                    ),
+                    child: FilterContent(),
+                  );
+                }),
+              );
             },
           ),
 
