@@ -7,6 +7,7 @@ import 'package:sneak_shoes_app/presentation/widgets/custom_animated_icon.dart';
 
 import 'component/drawer_menu.dart';
 import 'component/filter_content.dart';
+import 'component/home_menu.dart';
 
 class Home extends StatelessWidget {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
@@ -46,7 +47,7 @@ class Home extends StatelessWidget {
                         topRight: Radius.circular(50),
                       ),
                     ),
-                    child: FilterContent(),
+                    child: FilterMenu(),
                   );
                 }),
               );
@@ -76,7 +77,7 @@ class Home extends StatelessWidget {
       body: Scaffold(
         key: _scaffoldKey,
         drawer: DrawerMenu(),
-        // body: Content(),
+        body: HomeMenu(),
       ),
     );
   }

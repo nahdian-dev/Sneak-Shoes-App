@@ -92,5 +92,8 @@ ThemeData getApplicationTheme() {
 
     // Basic Font
     fontFamily: FontConstants.fontFamily,
+
+    // Background basic
+    scaffoldBackgroundColor: ColorManager.primary,
   );
 }
