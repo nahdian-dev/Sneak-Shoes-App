@@ -8,7 +8,6 @@ class ProductDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorManager.brown,
       body: SafeArea(
         child: CustomScrollView(
           physics: BouncingScrollPhysics(),

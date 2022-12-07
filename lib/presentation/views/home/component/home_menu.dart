@@ -61,8 +61,10 @@ class HomeMenu extends StatelessWidget {
                     (BuildContext context, int index) {
                       return GestureDetector(
                         onTap: () {
-                          Navigator.of(context)
-                              .pushNamed(Routes.productDetailRoute);
+                          Navigator.of(context).pushNamed(
+                            Routes.productDetailRoute,
+                            arguments: _product.productData[index].id,
+                          );
                         },
                         child: Container(
                           margin: EdgeInsets.all(5),

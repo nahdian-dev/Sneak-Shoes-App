@@ -17,6 +17,7 @@ class RouteGenerator {
         );
       case Routes.productDetailRoute:
         return PageTransition(
+          settings: RouteSettings(arguments: routeSettings.arguments),
           child: ProductDetail(),
           type: PageTransitionType.rightToLeftPop,
           childCurrent: ProductDetail(),

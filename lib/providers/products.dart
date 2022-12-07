@@ -8,4 +8,25 @@ class Products with ChangeNotifier {
   List<Product> get productData {
     return _productData;
   }
+
+  Product getById(int id) {
+    Product _product;
+
+    _product = _productData.firstWhere((element) => element.id == id);
+
+    return _product;
+  }
+
+  int _selectedbrand;
+  int get selectedBrand => _selectedbrand;
+
+  set selectedBrand(int value) {
+    _selectedbrand = value;
+    notifyListeners();
+  }
+
+  void selectedIndex(int index) {
+    _selectedbrand = index;
+    notifyListeners();
+  }
 }

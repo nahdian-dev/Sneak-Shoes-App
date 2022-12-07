@@ -51,6 +51,7 @@ class _ImagesSliderState extends State<ImagesSlider> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: imgList.map((url) {
             int index = imgList.indexOf(url);
+
             return Container(
                 width: 8.0,
                 height: 8.0,
