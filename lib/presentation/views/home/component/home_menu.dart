@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sneak_shoes_app/presentation/resources/colors_manager.dart';
 import 'package:sneak_shoes_app/presentation/routes/routes_manager.dart';
+import 'package:sneak_shoes_app/providers/favorite_product.dart';
 import 'package:sneak_shoes_app/providers/products.dart';
 
 class HomeMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Products _product = Provider.of<Products>(context);
+    Favoriteproduct _favoriteProduct = Provider.of<Favoriteproduct>(context);
 
     return NestedScrollView(
       headerSliverBuilder: (context, innerBoxIsScrolled) => [
@@ -72,12 +74,30 @@ class HomeMenu extends StatelessWidget {
                           child: Stack(
                             children: <Widget>[
                               // FAVORITE BUTTON
-                              Align(
-                                alignment: Alignment.topRight,
-                                child: IconButton(
-                                  onPressed: () {},
-                                  icon: Icon(Icons.favorite),
-                                ),
+                              Consumer<Favoriteproduct>(
+                                builder: (context, value, child) {
+                                  var _favorite =
+                                      _favoriteProduct.favoriteProduct;
+
+                                  return Align(
+                                    alignment: Alignment.topRight,
+                                    child: IconButton(
+                                      onPressed: () {
+                                        _favoriteProduct.addToFavoriteList(
+                                          _product.productData[index].id,
+                                          context,
+                                        );
+
+                                        print(_favoriteProduct.favoriteProduct);
+                                      },
+                                      icon: (_favorite == null ||
+                                              !_favorite.contains(_product
+                                                  .productData[index].id)
+                                          ? Icon(Icons.favorite_border)
+                                          : Icon(Icons.favorite)),
+                                    ),
+                                  );
+                                },
                               ),
 
                               //IMAGE

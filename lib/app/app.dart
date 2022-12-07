@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sneak_shoes_app/presentation/routes/routes_generator.dart';
+import 'package:sneak_shoes_app/providers/favorite_product.dart';
 import '../presentation/resources/themes_manager.dart';
 import '../presentation/views/home/home.dart';
 import '../providers/products.dart';
@@ -13,8 +14,15 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<Products>(
-      create: (context) => Products(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => Products(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => Favoriteproduct(),
+        ),
+      ],
       child: MaterialApp(
         title: 'Sneak Shoes App',
         debugShowCheckedModeBanner: false,

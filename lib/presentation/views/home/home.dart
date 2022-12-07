@@ -54,6 +54,13 @@ class Home extends StatelessWidget {
             },
           ),
 
+          // Favorite
+          IconButton(
+            icon: Icon(Icons.favorite_border),
+            color: ColorManager.dark,
+            onPressed: () {},
+          ),
+
           // Button
           FloatingActionButton(
             backgroundColor: ColorManager.dark,
