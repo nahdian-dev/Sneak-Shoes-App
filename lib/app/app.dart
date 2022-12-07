@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sneak_shoes_app/presentation/routes/routes_generator.dart';
 import '../presentation/resources/themes_manager.dart';
 import '../presentation/views/home/home.dart';
+import '../providers/products.dart';
 
 class MyApp extends StatefulWidget {
   @override
@@ -11,12 +13,15 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Sneak Shoes App',
-      debugShowCheckedModeBanner: false,
-      theme: getApplicationTheme(),
-      onGenerateRoute: RouteGenerator.getRoute,
-      home: Home(),
+    return ChangeNotifierProvider<Products>(
+      create: (context) => Products(),
+      child: MaterialApp(
+        title: 'Sneak Shoes App',
+        debugShowCheckedModeBanner: false,
+        theme: getApplicationTheme(),
+        onGenerateRoute: RouteGenerator.getRoute,
+        home: Home(),
+      ),
     );
   }
 }

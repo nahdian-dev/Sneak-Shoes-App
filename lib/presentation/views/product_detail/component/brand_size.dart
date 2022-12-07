@@ -9,7 +9,7 @@
 
 // class _BrandSizeState extends State<BrandSize> {
 //   int _selectedIndex = 0;
-  
+
 //   List sizeItem = [
 //     '40',
 //     '41',
