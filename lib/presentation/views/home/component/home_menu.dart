@@ -9,7 +9,7 @@ class HomeMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Products _product = Provider.of<Products>(context);
-    Favoriteproduct _favoriteProduct = Provider.of<Favoriteproduct>(context);
+    FavoriteProduct _favoriteProduct = Provider.of<FavoriteProduct>(context);
 
     return NestedScrollView(
       headerSliverBuilder: (context, innerBoxIsScrolled) => [
@@ -74,7 +74,7 @@ class HomeMenu extends StatelessWidget {
                           child: Stack(
                             children: <Widget>[
                               // FAVORITE BUTTON
-                              Consumer<Favoriteproduct>(
+                              Consumer<FavoriteProduct>(
                                 builder: (context, value, child) {
                                   var _favorite =
                                       _favoriteProduct.favoriteProduct;
@@ -87,8 +87,6 @@ class HomeMenu extends StatelessWidget {
                                           _product.productData[index].id,
                                           context,
                                         );
-
-                                        print(_favoriteProduct.favoriteProduct);
                                       },
                                       icon: (_favorite == null ||
                                               !_favorite.contains(_product

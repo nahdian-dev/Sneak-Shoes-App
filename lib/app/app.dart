@@ -6,12 +6,7 @@ import '../presentation/resources/themes_manager.dart';
 import '../presentation/views/home/home.dart';
 import '../providers/products.dart';
 
-class MyApp extends StatefulWidget {
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -20,7 +15,7 @@ class _MyAppState extends State<MyApp> {
           create: (context) => Products(),
         ),
         ChangeNotifierProvider(
-          create: (context) => Favoriteproduct(),
+          create: (context) => FavoriteProduct(),
         ),
       ],
       child: MaterialApp(
