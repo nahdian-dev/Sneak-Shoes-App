@@ -36,7 +36,7 @@ class ProductDetail extends StatelessWidget {
                 ),
               ),
               flexibleSpace: FlexibleSpaceBar(
-                background: ImagesSlider(),
+                background: ImageSlider(),
               ),
             ),
             ProductDetailBody(),

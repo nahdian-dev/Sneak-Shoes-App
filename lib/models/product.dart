@@ -8,9 +8,7 @@ class Product {
   final String description;
   final List<int> size;
   final String logo;
-  final String img;
-  final String img2;
-  final String img3;
+  final List<String> images;
 
   Product({
     @required this.id,
@@ -20,8 +18,6 @@ class Product {
     this.description,
     this.size,
     this.logo,
-    this.img,
-    this.img2,
-    this.img3,
+    this.images,
   });
 }

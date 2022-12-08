@@ -45,7 +45,7 @@ class FavoriteBody extends StatelessWidget {
                                 color: Colors.grey.withOpacity(0.2),
                                 borderRadius: BorderRadius.circular(20),
                               ),
-                              child: Image.asset(_getFavorite.img),
+                              child: Image.asset(_getFavorite.images[0]),
                             ),
                             SizedBox(
                               width: 20,

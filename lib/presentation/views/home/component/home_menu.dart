@@ -105,7 +105,7 @@ class HomeMenu extends StatelessWidget {
                                 margin: EdgeInsets.all(20),
                                 alignment: Alignment.topCenter,
                                 child: Image.asset(
-                                  _product.productData[index].img,
+                                  _product.productData[index].images[0],
                                   fit: BoxFit.contain,
                                   height:
                                       MediaQuery.of(context).size.height / 7,

@@ -17,6 +17,7 @@ class Products with ChangeNotifier {
     return _product;
   }
 
+  // SELECTED BRAND
   int _selectedbrand;
   int get selectedBrand => _selectedbrand;
 
@@ -28,5 +29,26 @@ class Products with ChangeNotifier {
   void selectedIndex(int index) {
     _selectedbrand = index;
     notifyListeners();
+  }
+
+  // IMAGE SLIDER
+  int _selectedImage = 0;
+  int get selectedImage => _selectedImage;
+
+  set selectedImage(int index) {
+    _selectedImage = index;
+    notifyListeners();
+  }
+
+  List<Widget> _imageSlider;
+  List<Widget> get imageSlider => _imageSlider;
+
+  set imagesSlider(List<String> images) {
+    _imageSlider = images
+        .map((item) => Image.asset(
+              item,
+              height: 400,
+            ))
+        .toList();
   }
 }

@@ -12,9 +12,11 @@ class ProductData with ChangeNotifier {
           'Memiliki inovasi terbaru yaitu Pulseboost HD, yang digunakan untuk lari, agar lebih nyaman. Dengan kualitas premium, Adidas mengutamakan kenyamanan, ketahanan dan kekuatan sepatunya.',
       size: [38, 39, 40],
       logo: 'assets/brand_logo/adidas.png',
-      img: 'assets/shoes_img/adidas_ultrabost_20/1.jpg',
-      img2: 'assets/shoes_img/adidas_ultrabost_20/2.jpg',
-      img3: 'assets/shoes_img/adidas_ultrabost_20/3.jpg',
+      images: [
+        'assets/shoes_img/adidas_ultrabost_20/1.jpg',
+        'assets/shoes_img/adidas_ultrabost_20/2.jpg',
+        'assets/shoes_img/adidas_ultrabost_20/3.jpg',
+      ],
     ),
     Product(
       id: 2,
@@ -25,9 +27,11 @@ class ProductData with ChangeNotifier {
           'Memiliki inovasi terbaru yaitu Pulseboost HD, yang digunakan untuk lari, agar lebih nyaman. Dengan kualitas premium, Adidas mengutamakan kenyamanan, ketahanan dan kekuatan sepatunya.',
       size: [38, 39, 40],
       logo: 'assets/brand_logo/adidas.png',
-      img: 'assets/shoes_img/adidas_yeezy_boost_350/1.png',
-      img2: 'assets/shoes_img/adidas_yeezy_boost_350/2.png',
-      img3: 'assets/shoes_img/adidas_yeezy_boost_350/3.png',
+      images: [
+        'assets/shoes_img/adidas_yeezy_boost_350/1.png',
+        'assets/shoes_img/adidas_yeezy_boost_350/2.png',
+        'assets/shoes_img/adidas_yeezy_boost_350/3.png',
+      ],
     ),
     Product(
       id: 3,
@@ -38,9 +42,11 @@ class ProductData with ChangeNotifier {
           'Tackle your workouts with confidence in performance running shoes and stylish clothes from New Balance. Our athletic footwear goes the distance with you.',
       size: [39, 40, 41, 42],
       logo: 'assets/brand_logo/new_balance.png',
-      img: 'assets/shoes_img/new_balance_997/1.png',
-      img2: 'assets/shoes_img/new_balance_997/2.png',
-      img3: 'assets/shoes_img/new_balance_997/3.png',
+      images: [
+        'assets/shoes_img/new_balance_997/1.png',
+        'assets/shoes_img/new_balance_997/2.png',
+        'assets/shoes_img/new_balance_997/3.png',
+      ],
     ),
     Product(
       id: 4,
@@ -51,9 +57,11 @@ class ProductData with ChangeNotifier {
           'Tackle your workouts with confidence in performance running shoes and stylish clothes from New Balance. Our athletic footwear goes the distance with you.',
       size: [39, 40, 41, 42],
       logo: 'assets/brand_logo/new_balance.png',
-      img: 'assets/shoes_img/new_balance_1500/1.png',
-      img2: 'assets/shoes_img/new_balance_1500/2.png',
-      img3: 'assets/shoes_img/new_balance_1500/3.jpg',
+      images: [
+        'assets/shoes_img/new_balance_1500/1.png',
+        'assets/shoes_img/new_balance_1500/2.png',
+        'assets/shoes_img/new_balance_1500/3.jpg',
+      ],
     ),
     Product(
       id: 5,
@@ -64,9 +72,11 @@ class ProductData with ChangeNotifier {
           'Tackle your workouts with confidence in performance running shoes and stylish clothes from New Balance. Our athletic footwear goes the distance with you.',
       size: [39, 40, 41, 42],
       logo: 'assets/brand_logo/nike.png',
-      img: 'assets/shoes_img/nike_air_max_270/1.png',
-      img2: 'assets/shoes_img/nike_air_max_270/2.png',
-      img3: 'assets/shoes_img/nike_air_max_270/3.png',
+      images: [
+        'assets/shoes_img/nike_air_max_270/1.png',
+        'assets/shoes_img/nike_air_max_270/2.png',
+        'assets/shoes_img/nike_air_max_270/3.png',
+      ],
     ),
     Product(
       id: 6,
@@ -77,9 +87,11 @@ class ProductData with ChangeNotifier {
           'Tackle your workouts with confidence in performance running shoes and stylish clothes from New Balance. Our athletic footwear goes the distance with you.',
       size: [39, 40, 41, 42],
       logo: 'assets/brand_logo/nike.png',
-      img: 'assets/shoes_img/nike_air_max_720/1.png',
-      img2: 'assets/shoes_img/nike_air_max_720/2.png',
-      img3: 'assets/shoes_img/nike_air_max_720/3.png',
+      images: [
+        'assets/shoes_img/nike_air_max_720/1.png',
+        'assets/shoes_img/nike_air_max_720/2.png',
+        'assets/shoes_img/nike_air_max_720/3.png',
+      ],
     ),
   ];
 }
