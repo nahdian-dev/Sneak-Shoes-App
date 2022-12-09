@@ -8,7 +8,7 @@ import 'custom_animated_icon.dart';
 
 class BaseAppBar {
   static baseAppBar(BuildContext context, GlobalKey<ScaffoldState> _scaffoldKey,
-      bool drawer, bool favorite) {
+      bool drawer, bool favorite, bool cart) {
     return AppBar(
       elevation: 0,
       leading: (drawer == true)
@@ -66,24 +66,24 @@ class BaseAppBar {
               )
             : SizedBox.shrink(),
 
-        // Button
-        FloatingActionButton(
-          backgroundColor: ColorManager.dark,
-          elevation: 0,
-          mini: true,
-          onPressed: () {
-            Navigator.pushNamed(context, Routes.productDetailRoute);
-          },
-          child: Center(
-            child: Text(
-              "3",
-              style: getRegularStyle(),
-            ),
-          ),
-        ),
-        SizedBox(
-          width: 10,
-        ),
+        // Cart
+        (cart == true)
+            ? FloatingActionButton(
+                backgroundColor: ColorManager.dark,
+                elevation: 0,
+                mini: true,
+                onPressed: () {
+                  Navigator.pushNamed(context, Routes.cart);
+                },
+                child: Center(
+                  child: Text(
+                    "3",
+                    style: getRegularStyle(),
+                  ),
+                ),
+              )
+            : SizedBox.shrink(),
+        SizedBox(width: 10),
       ],
     );
   }

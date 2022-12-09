@@ -1,20 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sneak_shoes_app/presentation/resources/colors_manager.dart';
-import 'package:sneak_shoes_app/providers/favorite_product.dart';
 import 'package:sneak_shoes_app/providers/products.dart';
 
 class ProductDetailBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    FavoriteProduct _favoriteProduct = Provider.of<FavoriteProduct>(context);
-
     Products _product = Provider.of<Products>(context);
     var productId = ModalRoute.of(context).settings.arguments;
 
     return SliverList(
       delegate: SliverChildListDelegate([
-        // LOGO
         Container(
           margin: EdgeInsets.symmetric(horizontal: 20),
           child: Column(
@@ -126,57 +122,6 @@ class ProductDetailBody extends StatelessWidget {
                     textAlign: TextAlign.justify,
                   ),
                 ],
-              ),
-              SizedBox(height: 20),
-
-              // BUTTON
-              SizedBox(
-                height: MediaQuery.of(context).size.height / 14,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    // ICON
-                    GestureDetector(
-                      onTap: () {
-                        _favoriteProduct.addToFavoriteList(
-                          productId,
-                          context,
-                        );
-                      },
-                      child: Container(
-                        width: 50,
-                        decoration: BoxDecoration(
-                          border: Border.all(color: ColorManager.grey),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Center(
-                          child: Icon(
-                            (_favoriteProduct.favoriteProduct
-                                    .contains(productId)
-                                ? Icons.favorite
-                                : Icons.favorite_border),
-                            color: ColorManager.dark,
-                          ),
-                        ),
-                      ),
-                    ),
-
-                    // CART
-                    Container(
-                      width: MediaQuery.of(context).size.width / 1.4,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
-                        color: ColorManager.brown,
-                      ),
-                      child: Center(
-                        child: Text(
-                          "Add to Cart",
-                          style: Theme.of(context).textTheme.bodyText1,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
               ),
               SizedBox(height: 20),
             ],

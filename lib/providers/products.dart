@@ -11,7 +11,6 @@ class Products with ChangeNotifier {
 
   Product getById(int id) {
     Product _product;
-
     _product = _productData.firstWhere((element) => element.id == id);
 
     return _product;

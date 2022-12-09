@@ -10,7 +10,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppBar.baseAppBar(context, _scaffoldKey, true, true),
+      appBar: BaseAppBar.baseAppBar(context, _scaffoldKey, true, true, true),
       body: Scaffold(
         key: _scaffoldKey,
         drawer: DrawerMenu(),

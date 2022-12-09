@@ -10,7 +10,7 @@ class Favorite extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppBar.baseAppBar(context, _scaffoldKey, false, false),
+      appBar: BaseAppBar.baseAppBar(context, _scaffoldKey, false, false, true),
       body: Scaffold(
         key: _scaffoldKey,
         drawer: DrawerMenu(),
