@@ -17,10 +17,13 @@ class ProductDetailBody extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               // LOGO
-              Image.asset(
-                _product.getById(productId).logo,
-                height: MediaQuery.of(context).size.height / 8,
-                width: MediaQuery.of(context).size.width / 3,
+              Container(
+                margin: EdgeInsets.all(10),
+                child: Image.asset(
+                  _product.getById(productId).logo,
+                  height: MediaQuery.of(context).size.height / 8,
+                  width: MediaQuery.of(context).size.width / 3.5,
+                ),
               ),
 
               // TITLE
@@ -30,17 +33,19 @@ class ProductDetailBody extends StatelessWidget {
                     .textTheme
                     .headline1
                     .apply(fontSizeDelta: 10),
+                textAlign: TextAlign.center,
               ),
               SizedBox(height: 10),
 
               // PRICE
               Text(
-                '\$ ${_product.getById(productId).price.toStringAsFixed(0)}',
+                '\Rp. ${_product.getById(productId).price.toStringAsFixed(0)}',
                 style: Theme.of(context)
                     .textTheme
                     .bodyText1
                     .apply(fontSizeDelta: 10),
               ),
+              SizedBox(height: 10),
 
               // SIZE
               Column(

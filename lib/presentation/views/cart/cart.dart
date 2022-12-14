@@ -99,7 +99,7 @@ class Cart extends StatelessWidget {
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
-                                            '\$ ${_product.price.toStringAsFixed(0)}',
+                                            '\Rp. ${_product.price.toStringAsFixed(0)}',
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .subtitle1
@@ -136,7 +136,7 @@ class Cart extends StatelessWidget {
                     )
                   : Center(
                       child: Text(
-                        'CART KOSONG',
+                        'CART IS EMPTY',
                         style: Theme.of(context).textTheme.headline1.apply(
                               color: ColorManager.dark,
                             ),
@@ -223,23 +223,8 @@ class Cart extends StatelessWidget {
                                   ElevatedButton(
                                     onPressed: () {
                                       _cartList.addQuantity(
+                                        context,
                                         _cartList.currentQuantity,
-                                      );
-
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        SnackBar(
-                                          behavior: SnackBarBehavior.floating,
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width /
-                                              1.5,
-                                          duration: Duration(milliseconds: 500),
-                                          content: Text(
-                                            'Berhasil ubah quantity',
-                                            textAlign: TextAlign.center,
-                                          ),
-                                        ),
                                       );
 
                                       _cartList.selectedCart = null;
@@ -276,12 +261,13 @@ class Cart extends StatelessWidget {
                                         Theme.of(context).textTheme.bodyText1,
                                   ),
                                   Text(
-                                    _cartList.countPrice().toString(),
+                                    '\Rp. ${_cartList.countPrice().toStringAsFixed(0)}',
                                     style:
                                         Theme.of(context).textTheme.bodyText1,
                                   ),
                                 ],
                               ),
+                              SizedBox(height: 10),
                               Container(
                                 margin: EdgeInsets.only(bottom: 20),
                                 height: 50,
@@ -291,7 +277,7 @@ class Cart extends StatelessWidget {
                                 ),
                                 child: Center(
                                   child: Text(
-                                    "Add to Cart",
+                                    "Checkout",
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyText1

@@ -125,7 +125,7 @@ class HomeMenu extends StatelessWidget {
                                             .headline1),
                                     SizedBox(height: 10),
                                     Text(
-                                      '\$ ${_product.productData[index].price.toStringAsFixed(0)}',
+                                      '\Rp. ${_product.productData[index].price.toStringAsFixed(0)}',
                                       style: Theme.of(context)
                                           .textTheme
                                           .subtitle1

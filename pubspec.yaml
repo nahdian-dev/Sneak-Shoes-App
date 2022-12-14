@@ -28,10 +28,16 @@ dependencies:
   flutter_staggered_animations: ^0.1.2
   page_transition: ^2.0.9
   provider: ^6.0.4
+  awesome_snackbar_content: ^0.1.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: ^0.11.0
+
+flutter_icons:
+  android: "launcher_icon"
+  image_path: "assets/apps_icon.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -45,36 +51,15 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/shoes_img/adidas_ultrabost_20/1.jpg
-    - assets/shoes_img/adidas_ultrabost_20/2.jpg
-    - assets/shoes_img/adidas_ultrabost_20/3.jpg
+    - assets/shoes_images/adidas_ultraboost_4.0/
+    - assets/shoes_images/adidas_ultraboost_20/
+    - assets/shoes_images/new_balance_997/
+    - assets/shoes_images/new_balance_1500/
+    - assets/shoes_images/nike_air_max_95/
+    - assets/shoes_images/nike_air_max_270/
+    - assets/shoes_images/umbro_neptune/
 
-    - assets/shoes_img/adidas_yeezy_boost_350/1.png
-    - assets/shoes_img/adidas_yeezy_boost_350/2.png
-    - assets/shoes_img/adidas_yeezy_boost_350/3.png
-
-    - assets/shoes_img/new_balance_997/1.png
-    - assets/shoes_img/new_balance_997/2.png
-    - assets/shoes_img/new_balance_997/3.png
-
-    - assets/shoes_img/new_balance_1500/1.png
-    - assets/shoes_img/new_balance_1500/2.png
-    - assets/shoes_img/new_balance_1500/3.jpg
-
-    - assets/shoes_img/nike_air_max_270/1.png
-    - assets/shoes_img/nike_air_max_270/2.png
-    - assets/shoes_img/nike_air_max_270/3.png
-
-    - assets/shoes_img/nike_air_max_720/1.png
-    - assets/shoes_img/nike_air_max_720/2.png
-    - assets/shoes_img/nike_air_max_720/3.png
-
-    - assets/brand_logo/adidas.png
-    - assets/brand_logo/new_balance.png
-    - assets/brand_logo/nike.png
-    - assets/brand_logo/puma.png
-    - assets/brand_logo/reebok.png
-    - assets/brand_logo/umbro.png
+    - assets/brand_logo/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

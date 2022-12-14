@@ -1,4 +1,7 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
+
+import 'package:sneak_shoes_app/presentation/routes/routes_manager.dart';
 import 'package:sneak_shoes_app/models/cart.dart';
 import 'package:sneak_shoes_app/providers/products.dart';
 
@@ -37,39 +40,44 @@ class Carts extends Products {
   void addToCart(BuildContext context, int id, int qty) {
     var data = Cart(id: id, quantity: qty);
 
-    try {
-      if (getCart(id) != null) {
-        getCart(id).quantity += qty;
-      } else {
-        _listCart.add(data);
-      }
-
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          duration: Duration(milliseconds: 500),
-          content: Text('Berhasil tambah ke Cart')));
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          duration: Duration(milliseconds: 500),
-          content: Text('Gagal menambahkan ke Cart')));
+    if (getCart(id) != null) {
+      getCart(id).quantity += qty;
+    } else {
+      _listCart.add(data);
     }
+
+    ScaffoldMessenger.of(context)
+      ..showSnackBar(
+        SnackBar(
+          duration: Duration(seconds: 2),
+          content: AwesomeSnackbarContent(
+            title: 'Success add to Cart!',
+            message: '${getById(data.id).title} success add to Cart',
+            contentType: ContentType.success,
+          ),
+        ),
+      );
+
+    Navigator.pushReplacementNamed(context, Routes.cart);
 
     notifyListeners();
   }
 
   void removeCart(BuildContext context) {
-    _listCart.removeAt(_selectedCart);
+    int _getId = getCart(_listCart[_selectedCart].id).id;
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        behavior: SnackBarBehavior.floating,
-        width: MediaQuery.of(context).size.width / 1.5,
-        duration: Duration(milliseconds: 500),
-        content: Text(
-          'Berhasil hapus produk',
-          textAlign: TextAlign.center,
+    ScaffoldMessenger.of(context)
+      ..showSnackBar(
+        SnackBar(
+          duration: Duration(seconds: 2),
+          content: AwesomeSnackbarContent(
+            title: 'Success remove!',
+            message: '${getById(_getId).title} success remove from Cart',
+            contentType: ContentType.failure,
+          ),
         ),
-      ),
-    );
+      );
+    _listCart.removeAt(_selectedCart);
 
     notifyListeners();
   }
@@ -93,10 +101,22 @@ class Carts extends Products {
     return price;
   }
 
-  int addQuantity(int qty) {
+  int addQuantity(BuildContext context, int qty) {
     int output;
 
     output = _listCart[_selectedCart].quantity = qty;
+
+    ScaffoldMessenger.of(context)
+      ..showSnackBar(
+        SnackBar(
+          duration: Duration(seconds: 2),
+          content: AwesomeSnackbarContent(
+            title: 'Success Change Quantity!',
+            message: 'Succes change quantity to ${output.toString()} ',
+            contentType: ContentType.success,
+          ),
+        ),
+      );
 
     return output;
   }

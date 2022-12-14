@@ -48,7 +48,7 @@ class ImageSlider extends StatelessWidget {
                       shape: BoxShape.circle,
                       color: (_product.selectedImage == index)
                           ? ColorManager.dark
-                          : ColorManager.grey,
+                          : Colors.grey,
                     ));
               }).toList(),
             ),
