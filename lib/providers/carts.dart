@@ -3,8 +3,36 @@ import 'package:sneak_shoes_app/models/cart.dart';
 import 'package:sneak_shoes_app/providers/products.dart';
 
 class Carts extends Products {
+  // CART
   List<Cart> _listCart = [];
   List<Cart> get listCart => _listCart;
+
+  // VISIBLE WIDGET
+  bool _isVisible = false;
+  bool get isVisible => _isVisible;
+
+  set isVisible(bool value) {
+    _isVisible = value;
+    notifyListeners();
+  }
+
+  // SELECT CART
+  int _selectedCart;
+  int get selectedCart => _selectedCart;
+
+  set selectedCart(int index) {
+    _selectedCart = index;
+    notifyListeners();
+  }
+
+  // CURRENT QUANTITY
+  int _currentQuantity;
+  int get currentQuantity => _currentQuantity;
+
+  set currentQuantity(int qty) {
+    _currentQuantity = qty;
+    notifyListeners();
+  }
 
   void addToCart(BuildContext context, int id, int qty) {
     var data = Cart(id: id, quantity: qty);
@@ -28,14 +56,20 @@ class Carts extends Products {
     notifyListeners();
   }
 
-  void removeCart(int id, BuildContext context) {
-    int _cartId = getCart(id).id;
+  void removeCart(BuildContext context) {
+    _listCart.removeAt(_selectedCart);
 
-    _listCart.remove(_cartId);
-
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        behavior: SnackBarBehavior.floating,
+        width: MediaQuery.of(context).size.width / 1.5,
         duration: Duration(milliseconds: 500),
-        content: Text('Berhasil hapus ke Favorite')));
+        content: Text(
+          'Berhasil hapus produk',
+          textAlign: TextAlign.center,
+        ),
+      ),
+    );
 
     notifyListeners();
   }
@@ -57,5 +91,13 @@ class Carts extends Products {
     });
 
     return price;
+  }
+
+  int addQuantity(int qty) {
+    int output;
+
+    output = _listCart[_selectedCart].quantity = qty;
+
+    return output;
   }
 }

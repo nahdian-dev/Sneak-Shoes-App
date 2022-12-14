@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../resources/colors_manager.dart';
-import '../resources/styles_manager.dart';
 import '../routes/routes_manager.dart';
 import '../views/home/component/filter_content.dart';
 import 'custom_animated_icon.dart';
@@ -68,18 +67,11 @@ class BaseAppBar {
 
         // Cart
         (cart == true)
-            ? FloatingActionButton(
-                backgroundColor: ColorManager.dark,
-                elevation: 0,
-                mini: true,
-                onPressed: () {
-                  Navigator.pushNamed(context, Routes.cart);
-                },
-                child: Center(
-                  child: Text(
-                    "3",
-                    style: getRegularStyle(),
-                  ),
+            ? IconButton(
+                onPressed: () => Navigator.pushNamed(context, Routes.cart),
+                icon: Icon(
+                  Icons.shopping_cart,
+                  color: ColorManager.dark,
                 ),
               )
             : SizedBox.shrink(),

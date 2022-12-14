@@ -38,81 +38,98 @@ class Cart extends StatelessWidget {
                         var _product =
                             _products.getById(_cartList.listCart[index].id);
 
-                        var key =
-                            _cartList.getCart(_cartList.listCart[index].id).id;
+                        return GestureDetector(
+                          onTap: () {
+                            _cartList.currentQuantity = 0;
 
-                        return Dismissible(
-                          key: Key(key.toString()),
-                          onDismissed: (direction) {
-                            if (direction == DismissDirection.startToEnd ||
-                                direction == DismissDirection.endToStart) {
-                              _cartList.removeCart(key, context);
+                            if (_cartList.selectedCart == null) {
+                              _cartList.selectedCart = index;
+                              _cartList.isVisible = !_cartList.isVisible;
+
+                              _cartList.currentQuantity =
+                                  _cartList.listCart[index].quantity;
+                            } else if (_cartList.selectedCart == index) {
+                              _cartList.selectedCart = null;
+                              _cartList.isVisible = false;
+                            } else if (_cartList.selectedCart != index) {
+                              _cartList.selectedCart = index;
+                              _cartList.isVisible = true;
+
+                              _cartList.currentQuantity =
+                                  _cartList.listCart[index].quantity;
                             }
                           },
-                          child: Column(
-                            children: [
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  // IMAGE
-                                  Container(
-                                    width: 120,
-                                    height: 70,
-                                    padding: EdgeInsets.all(14),
-                                    decoration: BoxDecoration(
-                                      color: Colors.grey.withOpacity(0.2),
-                                      borderRadius: BorderRadius.circular(20),
-                                    ),
-                                    child: Center(
-                                      child: Image.asset(_product.images[0]),
-                                    ),
+                          child: Container(
+                            color: (_cartList.selectedCart == index)
+                                ? ColorManager.grey
+                                : ColorManager.primary,
+                            padding: EdgeInsets.all(10),
+                            margin: EdgeInsets.symmetric(vertical: 10),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                // IMAGE
+                                Container(
+                                  width: 120,
+                                  height: 70,
+                                  padding: EdgeInsets.all(14),
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey.withOpacity(0.2),
+                                    borderRadius: BorderRadius.circular(20),
                                   ),
-                                  SizedBox(width: 20),
+                                  child: Center(
+                                    child: Image.asset(_product.images[0]),
+                                  ),
+                                ),
+                                SizedBox(width: 20),
 
-                                  Flexible(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          _product.title,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyText1,
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              '\$ ${_product.price.toStringAsFixed(0)}',
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .subtitle1
-                                                  .apply(
-                                                      color: ColorManager.dark),
-                                            ),
-                                            Text(
-                                              'x' +
-                                                  _cartList
-                                                      .getCart(_product.id)
-                                                      .quantity
-                                                      .toString(),
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .subtitle1
-                                                  .apply(
-                                                      color: ColorManager.dark),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
+                                Flexible(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        _product.title,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText1,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            '\$ ${_product.price.toStringAsFixed(0)}',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .subtitle1
+                                                .apply(
+                                                    color: ColorManager.dark),
+                                          ),
+                                          Consumer<Carts>(
+                                            builder: (context, value, child) {
+                                              return Text(
+                                                'x' +
+                                                    _cartList
+                                                        .getCart(_product.id)
+                                                        .quantity
+                                                        .toString(),
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .subtitle1
+                                                    .apply(
+                                                        color:
+                                                            ColorManager.dark),
+                                              );
+                                            },
+                                          ),
+                                        ],
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
-                              SizedBox(height: 10),
-                            ],
+                                ),
+                              ],
+                            ),
                           ),
                         );
                       },
@@ -129,45 +146,169 @@ class Cart extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: Container(
-        margin: EdgeInsets.symmetric(horizontal: 20),
-        height: MediaQuery.of(context).size.height / 7,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Total',
-                  style: Theme.of(context).textTheme.bodyText1,
-                ),
-                Text(
-                  _cartList.countPrice().toString(),
-                  style: Theme.of(context).textTheme.bodyText1,
-                ),
-              ],
-            ),
-            Container(
-              margin: EdgeInsets.only(bottom: 20),
-              height: 50,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                color: ColorManager.dark,
+      bottomNavigationBar: (_cartList.listCart.isNotEmpty)
+          ? Container(
+              height: MediaQuery.of(context).size.height / 4.5,
+              child: LayoutBuilder(
+                builder: (p0, constraint) {
+                  return Stack(
+                    children: [
+                      Visibility(
+                        visible: _cartList.isVisible,
+                        child: Container(
+                          color: ColorManager.brown,
+                          height: constraint.maxHeight / 3,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  IconButton(
+                                      onPressed: () {
+                                        _cartList.currentQuantity -= 1;
+                                      },
+                                      icon: Icon(Icons.remove)),
+                                  Text(_cartList.currentQuantity.toString()),
+                                  IconButton(
+                                      onPressed: () {
+                                        _cartList.currentQuantity += 1;
+                                      },
+                                      icon: Icon(Icons.add))
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      showDialog(
+                                        context: context,
+                                        builder: (_) {
+                                          return AlertDialog(
+                                            content: Text(
+                                              'Are you sure to delete this product?',
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyText1,
+                                            ),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                child: Text('Cancel'),
+                                              ),
+                                              TextButton(
+                                                onPressed: () {
+                                                  _cartList.removeCart(context);
+
+                                                  _cartList.selectedCart = null;
+                                                  _cartList.isVisible = false;
+
+                                                  Navigator.pop(context);
+                                                },
+                                                child: Text('Delete'),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      );
+                                    },
+                                    child: Text(
+                                      'Delete',
+                                      style:
+                                          Theme.of(context).textTheme.bodyText1,
+                                    ),
+                                  ),
+                                  SizedBox(width: 10),
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      _cartList.addQuantity(
+                                        _cartList.currentQuantity,
+                                      );
+
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                          behavior: SnackBarBehavior.floating,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width /
+                                              1.5,
+                                          duration: Duration(milliseconds: 500),
+                                          content: Text(
+                                            'Berhasil ubah quantity',
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        ),
+                                      );
+
+                                      _cartList.selectedCart = null;
+                                      _cartList.isVisible = false;
+                                    },
+                                    child: Text(
+                                      'Change',
+                                      style:
+                                          Theme.of(context).textTheme.bodyText1,
+                                    ),
+                                  ),
+                                  SizedBox(width: 10),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Container(
+                          margin: EdgeInsets.symmetric(horizontal: 20),
+                          height: constraint.maxHeight / 1.5,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Total',
+                                    style:
+                                        Theme.of(context).textTheme.bodyText1,
+                                  ),
+                                  Text(
+                                    _cartList.countPrice().toString(),
+                                    style:
+                                        Theme.of(context).textTheme.bodyText1,
+                                  ),
+                                ],
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(bottom: 20),
+                                height: 50,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(30),
+                                  color: ColorManager.dark,
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    "Add to Cart",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText1
+                                        .apply(color: ColorManager.primary),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                },
               ),
-              child: Center(
-                child: Text(
-                  "Add to Cart",
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyText1
-                      .apply(color: ColorManager.primary),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
+            )
+          : SizedBox.shrink(),
     );
   }
 }
