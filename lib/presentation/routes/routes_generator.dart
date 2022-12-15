@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:sneak_shoes_app/presentation/views/cart/cart.dart';
+import 'package:sneak_shoes_app/presentation/views/checkout/checkout.dart';
 import 'package:sneak_shoes_app/presentation/views/product_detail/product_detail.dart';
 
 import '../views/favorite/favorite.dart';
@@ -34,6 +35,12 @@ class RouteGenerator {
           child: Cart(),
           type: PageTransitionType.rightToLeftPop,
           childCurrent: Cart(),
+        );
+      case Routes.checkout:
+        return PageTransition(
+          child: Checkout(),
+          type: PageTransitionType.rightToLeftPop,
+          childCurrent: Checkout(),
         );
       default:
         return unDefinedRoute();

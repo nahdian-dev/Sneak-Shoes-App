@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sneak_shoes_app/presentation/resources/colors_manager.dart';
+import 'package:sneak_shoes_app/presentation/routes/routes_manager.dart';
 import 'package:sneak_shoes_app/presentation/widgets/base_appbar.dart';
 import 'package:sneak_shoes_app/providers/carts.dart';
 import 'package:sneak_shoes_app/providers/products.dart';
@@ -178,6 +179,7 @@ class Cart extends StatelessWidget {
                               ),
                               Row(
                                 children: [
+                                  // DELETE PRODUCT
                                   ElevatedButton(
                                     onPressed: () {
                                       showDialog(
@@ -220,6 +222,8 @@ class Cart extends StatelessWidget {
                                     ),
                                   ),
                                   SizedBox(width: 10),
+
+                                  // ADD QUANTITY
                                   ElevatedButton(
                                     onPressed: () {
                                       _cartList.addQuantity(
@@ -268,20 +272,24 @@ class Cart extends StatelessWidget {
                                 ],
                               ),
                               SizedBox(height: 10),
-                              Container(
-                                margin: EdgeInsets.only(bottom: 20),
-                                height: 50,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(30),
-                                  color: ColorManager.dark,
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    "Checkout",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyText1
-                                        .apply(color: ColorManager.primary),
+                              GestureDetector(
+                                onTap: () => Navigator.of(context)
+                                    .pushNamed(Routes.checkout),
+                                child: Container(
+                                  margin: EdgeInsets.only(bottom: 20),
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(30),
+                                    color: ColorManager.dark,
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      "Checkout",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText1
+                                          .apply(color: ColorManager.primary),
+                                    ),
                                   ),
                                 ),
                               ),
