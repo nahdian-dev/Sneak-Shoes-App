@@ -212,7 +212,10 @@ class Checkout extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     // COUPONS
-                    Text('*FRSEWQWE* applied',
+                    Text(
+                        (_checkout.couponCode.length != 0)
+                            ? '*${_checkout.couponCode}* applied'
+                            : 'Coupon is not used',
                         style: Theme.of(context).textTheme.bodyText1),
                   ],
                 ),
@@ -239,7 +242,7 @@ class Checkout extends StatelessWidget {
                         Text('Subtotal',
                             style: Theme.of(context).textTheme.bodyText1),
                         Text(
-                          'Rp. 10000',
+                          '\Rp. ${_cartList.countPrice().toStringAsFixed(0)}',
                           style: Theme.of(context)
                               .textTheme
                               .subtitle1

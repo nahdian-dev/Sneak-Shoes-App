@@ -1,5 +1,8 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
+import 'package:sneak_shoes_app/data/coupons.dart';
 import 'package:sneak_shoes_app/data/delivery_data.dart';
+import 'package:sneak_shoes_app/models/coupons.dart';
 import 'package:sneak_shoes_app/models/delivery.dart';
 
 class Checkouts with ChangeNotifier {
@@ -101,5 +104,38 @@ class Checkouts with ChangeNotifier {
         _deliveryData.firstWhere((element) => element.id == id);
 
     _deliveryCost = _getDelivery.cost;
+  }
+
+  // COUPONS
+  List<Coupons> _couponsData = CouponsData.couponsData;
+  List<Coupons> get couponsData => _couponsData;
+
+  String _couponCode = '';
+  String get couponCode => _couponCode;
+
+  double _couponDiscount = 0;
+  double get couponDiscount => _couponDiscount;
+
+  void useCoupon(
+      BuildContext context, bool isExpired, String code, double discount) {
+    if (!isExpired) {
+      _couponCode = code;
+      _couponDiscount = discount;
+      Navigator.pop(context);
+    } else {
+      ScaffoldMessenger.of(context)
+        ..showSnackBar(
+          SnackBar(
+            duration: Duration(milliseconds: 500),
+            backgroundColor: Colors.transparent,
+            content: AwesomeSnackbarContent(
+              title: 'Coupons is Expired!',
+              message: 'Cannot use this coupon',
+              contentType: ContentType.failure,
+            ),
+          ),
+        );
+    }
+    notifyListeners();
   }
 }
