@@ -141,23 +141,40 @@ class Checkout extends StatelessWidget {
                   height: 80,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: 5,
+                    itemCount: _checkout.deliveryData.length,
                     itemBuilder: (context, index) {
-                      return Container(
-                        margin: EdgeInsets.only(right: 10),
-                        width: 120,
-                        decoration: BoxDecoration(
-                          border: Border.all(color: ColorManager.dark),
-                          borderRadius: BorderRadius.circular(10),
-                          color: ColorManager.primary,
-                        ),
-                        child: Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text('Rp. 10000'),
-                              Text('STANDARD'),
-                            ],
+                      return GestureDetector(
+                        onTap: () {
+                          _checkout.selectedDelivery = index;
+                          _checkout.getDeliveryCost(_checkout
+                              .deliveryData[_checkout.selectedDelivery].id);
+                        },
+                        child: Container(
+                          margin: EdgeInsets.only(right: 10),
+                          width: 120,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: (_checkout.selectedDelivery == index)
+                                ? ColorManager.brown
+                                : ColorManager.grey,
+                          ),
+                          child: Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  '\Rp. ${_checkout.deliveryData[index].cost}',
+                                  style: Theme.of(context).textTheme.bodyText1,
+                                ),
+                                Text(
+                                  _checkout.deliveryData[index].name,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .subtitle1
+                                      .apply(color: ColorManager.dark),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       );
@@ -223,6 +240,22 @@ class Checkout extends StatelessWidget {
                             style: Theme.of(context).textTheme.bodyText1),
                         Text(
                           'Rp. 10000',
+                          style: Theme.of(context)
+                              .textTheme
+                              .subtitle1
+                              .apply(color: ColorManager.dark),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('Delivery',
+                            style: Theme.of(context).textTheme.bodyText1),
+                        Text(
+                          (_checkout.deliveryCost != 0)
+                              ? '\Rp. ${_checkout.deliveryCost.toString()}'
+                              : '-',
                           style: Theme.of(context)
                               .textTheme
                               .subtitle1

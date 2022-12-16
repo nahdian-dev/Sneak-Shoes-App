@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:sneak_shoes_app/data/delivery_data.dart';
+import 'package:sneak_shoes_app/models/delivery.dart';
 
 class Checkouts with ChangeNotifier {
   // SHIPPING
@@ -77,5 +79,27 @@ class Checkouts with ChangeNotifier {
     }
 
     return _image;
+  }
+
+  // DELIVERY
+  List<Delivery> _deliveryData = DeliveryData.deliveryData;
+  List<Delivery> get deliveryData => _deliveryData;
+
+  int _selectedDelivery;
+  int get selectedDelivery => _selectedDelivery;
+
+  set selectedDelivery(int index) {
+    _selectedDelivery = index;
+    notifyListeners();
+  }
+
+  int _deliveryCost = 0;
+  int get deliveryCost => _deliveryCost;
+
+  void getDeliveryCost(int id) {
+    Delivery _getDelivery =
+        _deliveryData.firstWhere((element) => element.id == id);
+
+    _deliveryCost = _getDelivery.cost;
   }
 }
