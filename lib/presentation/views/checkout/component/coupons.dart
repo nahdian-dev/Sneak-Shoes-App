@@ -4,6 +4,10 @@ import 'package:sneak_shoes_app/presentation/resources/colors_manager.dart';
 import 'package:sneak_shoes_app/providers/checkout.dart';
 
 class Coupons extends StatelessWidget {
+  final double subtotal;
+
+  const Coupons({Key key, this.subtotal}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     Checkouts _checkout = Provider.of<Checkouts>(context);
@@ -128,6 +132,7 @@ class Coupons extends StatelessWidget {
                                   _checkout.couponsData[index].code,
                                   _checkout.couponsData[index].discount,
                                 );
+                                _checkout.countDiscount(subtotal);
                               },
                               child: Container(
                                 height: 40,

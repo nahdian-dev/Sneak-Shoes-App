@@ -116,8 +116,14 @@ class Checkouts with ChangeNotifier {
   double _couponDiscount = 0;
   double get couponDiscount => _couponDiscount;
 
+  double totalDiscount = 0;
+
   void useCoupon(
-      BuildContext context, bool isExpired, String code, double discount) {
+    BuildContext context,
+    bool isExpired,
+    String code,
+    double discount,
+  ) {
     if (!isExpired) {
       _couponCode = code;
       _couponDiscount = discount;
@@ -137,5 +143,22 @@ class Checkouts with ChangeNotifier {
         );
     }
     notifyListeners();
+  }
+
+  double countDiscount(double subtotal) {
+    double _discount;
+
+    _discount = (_couponDiscount / 100) * subtotal;
+    totalDiscount = _discount;
+
+    return _discount;
+  }
+
+  double countTotalPay(double subtotal) {
+    double _totalPay;
+
+    _totalPay = subtotal + _deliveryCost - totalDiscount;
+
+    return _totalPay;
   }
 }

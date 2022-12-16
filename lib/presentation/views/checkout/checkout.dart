@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sneak_shoes_app/presentation/views/checkout/component/succes_confirm.dart';
 
 import 'package:sneak_shoes_app/providers/carts.dart';
 import 'package:sneak_shoes_app/providers/checkout.dart';
@@ -200,7 +201,9 @@ class Checkout extends StatelessWidget {
                       onPressed: () => Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: ((context) => Coupons()),
+                          builder: ((context) => Coupons(
+                                subtotal: _cartList.countPrice(),
+                              )),
                         ),
                       ),
                       child: Text('EDIT'),
@@ -272,21 +275,7 @@ class Checkout extends StatelessWidget {
                         Text('Discount',
                             style: Theme.of(context).textTheme.bodyText1),
                         Text(
-                          'Rp. 10000',
-                          style: Theme.of(context)
-                              .textTheme
-                              .subtitle1
-                              .apply(color: ColorManager.dark),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text('Delivery',
-                            style: Theme.of(context).textTheme.bodyText1),
-                        Text(
-                          'Rp. 10000',
+                          'Rp. ${_checkout.totalDiscount.toStringAsFixed(0)}',
                           style: Theme.of(context)
                               .textTheme
                               .subtitle1
@@ -320,14 +309,17 @@ class Checkout extends StatelessWidget {
                         style: Theme.of(context).textTheme.bodyText1,
                       ),
                       Text(
-                        '\Rp. ${_cartList.countPrice().toStringAsFixed(0)}',
+                        '\Rp. ${_checkout.countTotalPay(_cartList.countPrice()).toStringAsFixed(0)}',
                         style: Theme.of(context).textTheme.bodyText1,
                       ),
                     ],
                   ),
                   SizedBox(height: 10),
                   GestureDetector(
-                    onTap: () => null,
+                    onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: ((context) => SuccesConfirm()))),
                     child: Container(
                       margin: EdgeInsets.only(bottom: 20),
                       height: 50,
