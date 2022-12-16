@@ -60,6 +60,9 @@ flutter:
     - assets/shoes_images/umbro_neptune/
 
     - assets/brand_logo/
+    - assets/payment_method/
+    
+    - assets/payment_icon.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
