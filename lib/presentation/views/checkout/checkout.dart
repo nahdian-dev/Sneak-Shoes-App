@@ -316,10 +316,14 @@ class Checkout extends StatelessWidget {
                   ),
                   SizedBox(height: 10),
                   GestureDetector(
-                    onTap: () => Navigator.push(
+                    onTap: () {
+                      Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: ((context) => SuccesConfirm()))),
+                          builder: ((context) => SuccesConfirm()),
+                        ),
+                      );
+                    },
                     child: Container(
                       margin: EdgeInsets.only(bottom: 20),
                       height: 50,

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../resources/colors_manager.dart';
 import '../routes/routes_manager.dart';
-import '../views/home/component/filter_content.dart';
 import 'custom_animated_icon.dart';
 
 class BaseAppBar {
@@ -32,26 +31,7 @@ class BaseAppBar {
         IconButton(
           icon: Icon(Icons.tune),
           color: ColorManager.dark,
-          onPressed: () {
-            showModalBottomSheet(
-              context: context,
-              isScrollControlled: true,
-              backgroundColor: Colors.transparent,
-              builder: ((context) {
-                return Container(
-                  height: MediaQuery.of(context).size.height / 1.2,
-                  decoration: BoxDecoration(
-                    color: ColorManager.primary,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(50),
-                      topRight: Radius.circular(50),
-                    ),
-                  ),
-                  child: FilterMenu(),
-                );
-              }),
-            );
-          },
+          onPressed: () {},
         ),
 
         // Favorite

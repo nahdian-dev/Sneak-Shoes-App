@@ -14,13 +14,13 @@ class FavoriteProduct with ChangeNotifier {
 
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           duration: Duration(milliseconds: 500),
-          content: Text('Berhasil tambah ke Favorite')));
+          content: Text('Success add to Favorite')));
     } else {
       _favoriteProduct.remove(id);
 
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           duration: Duration(milliseconds: 500),
-          content: Text('Berhasil hapus ke Favorite')));
+          content: Text('Success delete from Favorite!')));
     }
     notifyListeners();
   }
@@ -40,7 +40,7 @@ class FavoriteProduct with ChangeNotifier {
 
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         duration: Duration(milliseconds: 500),
-        content: Text('Berhasil hapus ke Favorite')));
+        content: Text('Success delete from Favorite!')));
 
     notifyListeners();
   }

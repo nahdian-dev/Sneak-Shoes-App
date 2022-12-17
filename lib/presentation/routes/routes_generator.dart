@@ -27,7 +27,7 @@ class RouteGenerator {
       case Routes.favorite:
         return PageTransition(
           child: Favorite(),
-          type: PageTransitionType.topToBottom,
+          type: PageTransitionType.rightToLeft,
           childCurrent: Favorite(),
         );
       case Routes.cart:
