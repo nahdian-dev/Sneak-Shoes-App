@@ -4,11 +4,7 @@ import 'package:sneak_shoes_app/presentation/resources/colors_manager.dart';
 
 import 'package:sneak_shoes_app/providers/favorite_product.dart';
 
-import 'package:sneak_shoes_app/presentation/widgets/base_appbar.dart';
-
 class Favorite extends StatelessWidget {
-  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey();
-
   @override
   Widget build(BuildContext context) {
     FavoriteProduct _favoriteProduct = Provider.of<FavoriteProduct>(context);
